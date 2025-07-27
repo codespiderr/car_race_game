@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ie3yp472fpt"]
+
+[ext_resource type="Script" uid="uid://eone18wtx2n5" path="res://character_body_2d.gd" id="1_35dfu"]
+[ext_resource type="Texture2D" uid="uid://dadpe1bbsf38q" path="res://assets/spritesheet_vehicles.png" id="2_tgmth"]
+[ext_resource type="Texture2D" uid="uid://yhfn6yiwravl" path="res://assets/white.png" id="2_w4bh2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4bh2"]
+size = Vector2(64, 126)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_35dfu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w4bh2")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-17, 63)
+amount = 35
+texture = ExtResource("2_w4bh2")
+lifetime = 0.16
+randomness = 0.72
+emission_shape = 1
+emission_sphere_radius = 7.33
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+color = Color(0.728822, 0.728822, 0.728822, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tgmth")
+region_enabled = true
+region_rect = Rect2(0, 116, 71, 131)
