@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 1000.0
 
 var released = true
+var back_released = true
 
 var press_left = false
 var press_right = false
@@ -14,28 +14,30 @@ var direction_to_move
 func _physics_process(delta: float) -> void:
 
 	direction_to_move = Vector2(cos($".".rotation + PI/2),sin($".".rotation + PI/2)).normalized()
-
 	if Input.is_action_just_pressed("forward2"):
-		
 		released = false
 	elif Input.is_action_just_released("forward2"):
 		released = true
 		
 		
-	if released:
-		velocity = Vector2(0,0)
-	else:
-		velocity = -direction_to_move * SPEED * delta * 70
+	
 	#if velocity.y<0 and released:
 		#velocity.y+=400*delta
 		#if velocity.y>0:
 			#velocity.y = 0
 		
 	if Input.is_action_just_pressed("back2"):
-		velocity = Vector2(0,1) * SPEED
+		back_released = false
 	elif Input.is_action_just_released("back2"):
+		back_released = true
+		
+	if back_released and released :
 		velocity = Vector2(0,0)
-
+	elif back_released:
+		velocity = -direction_to_move * SPEED * delta * 70
+	else:
+		velocity = direction_to_move * SPEED * delta * 40
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if Input.is_action_just_pressed("ui_end"):
@@ -55,12 +57,18 @@ func _physics_process(delta: float) -> void:
 		press_right = false
 		
 	if press_left:
-		$".".rotation_degrees -= 180*delta
+		if !released:
+			$".".rotation_degrees -= 180*delta
+		elif !back_released:
+			$".".rotation_degrees += 180*delta
 	else:
 		$".".rotation_degrees += 0
 		
 	if press_right:
-		$".".rotation_degrees +=180*delta
+		if !released:
+			$".".rotation_degrees +=180*delta
+		elif !back_released:
+			$".".rotation_degrees -= 180*delta
 	else:
 		$".".rotation_degrees += 0
 		
