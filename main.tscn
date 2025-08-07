@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=4 uid="uid://dfmow04wecuh2"]
+[gd_scene load_steps=14 format=4 uid="uid://dfmow04wecuh2"]
 
 [ext_resource type="PackedScene" uid="uid://ie3yp472fpt" path="res://car1.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://c3jp2ud3dtu46" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="TileSet" uid="uid://bc3e2qvfuu02s" path="res://track.tres" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://qas1o1lskewt" path="res://car2.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://ca6q5sxu6l7j1" path="res://spritesheet_objects.png" id="3_lquwl"]
+[ext_resource type="FontFile" uid="uid://2d5foissd24p" path="res://SuperBrigadeLaser-j9V2l.otf" id="6_7mycd"]
+[ext_resource type="Theme" uid="uid://c3efukbur30h3" path="res://soft_retro.tres" id="7_272bh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(508, 39)
@@ -15,8 +17,12 @@ size = Vector2(775, 43)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
 size = Vector2(757, 46.5)
 
+[sub_resource type="Theme" id="Theme_lquwl"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_lquwl"]
 font_size = 44
+
+[sub_resource type="Theme" id="Theme_272bh"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -48,6 +54,45 @@ region_rect = Rect2(0, 291.333, 444.642, 210.462)
 [node name="Sprite2D3" type="Sprite2D" parent="track"]
 position = Vector2(115, 64)
 rotation = -1.5708
+texture = ExtResource("3_lquwl")
+region_enabled = true
+region_rect = Rect2(0, 291.333, 444.642, 210.462)
+
+[node name="Sprite2D10" type="Sprite2D" parent="track"]
+position = Vector2(3911, 482)
+rotation = 1.5708
+texture = ExtResource("3_lquwl")
+region_enabled = true
+region_rect = Rect2(0, 291.333, 444.642, 210.462)
+
+[node name="Sprite2D11" type="Sprite2D" parent="track"]
+position = Vector2(3911, 932)
+rotation = 1.5708
+texture = ExtResource("3_lquwl")
+region_enabled = true
+region_rect = Rect2(0, 291.333, 444.642, 210.462)
+
+[node name="Sprite2D12" type="Sprite2D" parent="track"]
+position = Vector2(3920, 34)
+rotation = 1.5708
+texture = ExtResource("3_lquwl")
+region_enabled = true
+region_rect = Rect2(0, 291.333, 444.642, 210.462)
+
+[node name="Sprite2D13" type="Sprite2D" parent="track"]
+position = Vector2(1650, -701)
+texture = ExtResource("3_lquwl")
+region_enabled = true
+region_rect = Rect2(0, 291.333, 444.642, 210.462)
+
+[node name="Sprite2D14" type="Sprite2D" parent="track"]
+position = Vector2(1202, -699)
+texture = ExtResource("3_lquwl")
+region_enabled = true
+region_rect = Rect2(0, 291.333, 444.642, 210.462)
+
+[node name="Sprite2D15" type="Sprite2D" parent="track"]
+position = Vector2(755, -697)
 texture = ExtResource("3_lquwl")
 region_enabled = true
 region_rect = Rect2(0, 291.333, 444.642, 210.462)
@@ -143,8 +188,46 @@ offset_left = 44.0
 offset_top = 54.0
 offset_right = 202.0
 offset_bottom = 108.0
+theme = SubResource("Theme_lquwl")
+theme_override_font_sizes/font_size = 60
+text = "TESTING"
 label_settings = SubResource("LabelSettings_lquwl")
 metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_272bh")
+theme_override_fonts/font = ExtResource("6_7mycd")
+theme_override_font_sizes/font_size = 60
+text = "TESTING"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -18.32
+offset_right = 26.0
+offset_bottom = 18.32
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("7_272bh")
+theme_override_font_sizes/font_size = 60
+text = "START"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1979, 348)
@@ -155,3 +238,4 @@ zoom = Vector2(0.27, 0.27)
 [connection signal="body_exited" from="checkpints/checkpoint2" to="." method="_on_checkpoint_2_body_exited"]
 [connection signal="body_exited" from="checkpints/checkpoint4" to="." method="_on_checkpoint_4_body_exited"]
 [connection signal="body_exited" from="checkpints/checkpoint3" to="." method="_on_checkpoint_3_body_exited"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

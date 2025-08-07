@@ -1,16 +1,20 @@
 extends CharacterBody2D
 
 
-const SPEED = 1000.0
+var SPEED = 1000.0
+var rotate = 180
 
 var released = true
 var back_released = true
 
 var press_left = false
 var press_right = false
-
+var laps = 0
 var direction_to_move 
-
+var check1 = false
+var check2 = false
+var check3 = false
+var check4 = false
 func _physics_process(delta: float) -> void:
 
 	direction_to_move = Vector2(cos($".".rotation + PI/2),sin($".".rotation + PI/2)).normalized()
@@ -19,8 +23,7 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("forward2"):
 		released = true
 		
-		
-	
+
 	#if velocity.y<0 and released:
 		#velocity.y+=400*delta
 		#if velocity.y>0:
@@ -58,17 +61,17 @@ func _physics_process(delta: float) -> void:
 		
 	if press_left:
 		if !released:
-			$".".rotation_degrees -= 180*delta
+			$".".rotation_degrees -= rotate*delta
 		elif !back_released:
-			$".".rotation_degrees += 180*delta
+			$".".rotation_degrees += rotate*delta
 	else:
 		$".".rotation_degrees += 0
 		
 	if press_right:
 		if !released:
-			$".".rotation_degrees +=180*delta
+			$".".rotation_degrees +=rotate*delta
 		elif !back_released:
-			$".".rotation_degrees -= 180*delta
+			$".".rotation_degrees -= rotate*delta
 	else:
 		$".".rotation_degrees += 0
 		

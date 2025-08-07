@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpcog2bhowbxy"]
+
+[ext_resource type="Script" uid="uid://bd47jo2iirvvu" path="res://winner_disp.gd" id="1_7bqis"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://kenneyUI-red.tres" id="1_rtk4o"]
+[ext_resource type="Theme" uid="uid://c3efukbur30h3" path="res://soft_retro.tres" id="3_clejf"]
+[ext_resource type="Texture2D" uid="uid://d3mxevonalwwa" path="res://pixel_background.png" id="3_r6iui"]
+
+[node name="WinnerDisp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rtk4o")
+script = ExtResource("1_7bqis")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(558, 324)
+scale = Vector2(6.975, 7.81)
+texture = ExtResource("3_r6iui")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = -24.5
+offset_right = 122.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_clejf")
+theme_override_font_sizes/font_size = 20
+text = "NEW GAME"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -192.0
+offset_top = 110.0
+offset_right = 205.0
+offset_bottom = 239.0
+grow_horizontal = 2
+theme = ExtResource("3_clejf")
+theme_override_font_sizes/font_size = 80
+text = "testing text"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
